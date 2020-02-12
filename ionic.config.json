@@ -1,0 +1,7 @@
+{
+  "name": "DematApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
