@@ -16,29 +16,42 @@ export class Tab2Page {
     console.log('Ici la connexion à l\'api tous passe nickel');
     this.getIntervenant()
   }
-  // getIntervenant() {
-  //   return new Promise(resolve => {
-  //     this.http.get(this.api).subscribe(data => {
-  //       resolve(data);
-  //       this.donnees = data
-  //       console.log(this.donnees);
-  //     }, err => {
-  //       console.log(err);
-  //     });
-  //   });
-  // }
-
   getIntervenant() {
-    setTimeout(() => {
-      return new Promise(resolve => {
-        this.http.get(this.api).subscribe(data => {
-          resolve(data);
-          this.donnees = data
-          console.log(this.donnees);
-        }, err => {
-          console.log(err);
-        });
+    return new Promise(resolve => {
+      this.http.get(this.api).subscribe(data => {
+        resolve(data);
+        this.donnees = data
+        console.log(this.donnees);
+      }, err => {
+        console.log(err);
       });
-    }, 5000);
+    });
   }
+
+  doRefresh(event) {
+    setTimeout(() =>{
+      this.getIntervenant(this.api, 1, false)
+        .then(() => {
+          event.target.complete();
+        })
+        .catch(() => {
+          event.target.complete();
+        });
+    },3000)
+    
+  }
+
+  // getIntervenant() {
+  //   setTimeout(() => {
+  //     return new Promise(resolve => {
+  //       this.http.get(this.api).subscribe(data => {
+  //         resolve(data);
+  //         this.donnees = data
+  //         console.log(this.donnees);
+  //       }, err => {
+  //         console.log(err);
+  //       });
+  //     });
+  //   }, 5000);
+  // }
 }
